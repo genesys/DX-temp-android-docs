@@ -50,7 +50,7 @@ Use this Quick Start guide to get you up and running with a working chat hosted 
     }
     ```
 
-    > If your app is configured with shrink and minify turned on, please read [Shrink and Obfuscattion support](./shrink-and-obfuscate') and make sure the relevant rules are provided on the proguard file.
+    > If your app is configured with shrink and minify turned on, please read [Shrink and Obfuscattion support](./shrink-and-obfuscate.md') and make sure the relevant rules are provided on the proguard file.
     
 ---
 
@@ -72,7 +72,7 @@ Follow the next steps in order to have a basic working chat integrated to your A
      
 3. **Create ChatController instance**
     
-    The [`ChatController`](./chatcontroller) is the interaction point with the SDK. You need it to create a chat.
+    The [`ChatController`](./chatcontroller.md) is the interaction point with the SDK. You need it to create a chat.
 
     ```kotlin
     val chatController = ChatController.Builder(context)
@@ -103,7 +103,7 @@ Follow the next steps in order to have a basic working chat integrated to your A
     > Verify that a chat fragment was not already been added to your activity. If one was added, make sure to remove it before adding the newly provided fragment.
 
 5. **Release chat resources on activity destroy** 
-- Activate [`ChatController.destruct()`](./chatcontroller#destructandrelease) when the `ChatController` instance is no longer needed. Destruct will release referenced open resources.
+- Activate [`ChatController.destruct()`](./chatcontroller.md#destructandrelease) when the `ChatController` instance is no longer needed. Destruct will release referenced open resources.
 
 ---
 
