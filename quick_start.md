@@ -1,48 +1,43 @@
----
-layout: default
-title: Quick Start
-nav_order: 2
----
 
-# Quick start
-{: .no_toc }
-
-## Table of contents
-{: .no_toc .text-delta }
-
-- TOC
-{:toc}
-
----
+## Quick start
 
 Use this Quick Start guide to get you up and running with a working chat hosted by your App.   
 
-## System Requirements  
+### System Requirements  
 
-* Gradle 7.2 or higher.
-* Android Studio.
-* minSdk 21. 
+* Android Studio version Arctic Fox 2020.3.1 or higher.
+* Gradle version 7.2 or higher. (gradle plugin 7.1.0 and higher)
+* Kotlin plugin version 1.6.21 and higher
+* Java 8 or higher
+* Android 5.0 (API level 21) or higher. 
 
-## Set up the SDK on your App.
-{: .d-inline-block }
 
-1. ### Import SDK artifacts 
-    {: .no_toc .strong-sub-title}   
+### Set up chat SDK on your App.
+
+1. **Import SDK's artifacts**
+        
+    In order to be able to use the SDK adds the following imports to your App's build.gradle file.
+
+    ```gradle
+    implementation 'com.genesys.cloud:core:[Version_Number]'
+    implementation 'com.genesys.cloud:chatintegration:[Version_Number]'
+    implementation 'com.genesys.cloud:ui:[Version_Number]'
+
+    // optional:
+    implementation 'com.genesys.cloud:accessibility:[Version_Number]'
+    ```
+
+    [Check SDK's release notes for the latest available version](./release-notes#dependencies) 
+
     
-    Chat SDK constructed of 4 modules. In order to be able to use the SDK those modules should be imported in the Apps build.gradle file.
-
-    [Check here for latest SDK version release notes to find out how to import the SDKs artifacts]({{'/docs/release-notes#dependencies' | relative_url}}) 
-
-    
-2. ### Extra configurations on build.gradle:
-    {: .no_toc .strong-sub-title}  
+2. **Extra configurations on build.gradle**
    
     Add the following to the _`android{...}`_ block definition
 
     ```gradle
     android {
         kotlinOptions {
-            freeCompilerArgs = ['-Xjvm-default=compatibility']
+            freeCompilerArgs = ['-Xjvm-default=compatibility'] or ['-Xjvm-default=all']
             jvmTarget = "1.8"
         }
 
@@ -54,72 +49,62 @@ Use this Quick Start guide to get you up and running with a working chat hosted 
         }
     }
     ```
-    {: .mb-6}
 
-
-    - If your app is configured with shrink and minify turned on, please read [Shrink and Obfuscattion support]({{'/docs/faq/shrink-and-obfuscate' | relative_url}}) and make shure the relevant rules are provided on the proguard file.
+    > If your app is configured with shrink and minify turned on, please read [Shrink and Obfuscattion support](./shrink-and-obfuscate') and make sure the relevant rules are provided on the proguard file.
     
 ---
 
-#### 👍  Now you are ready to start using the SDK capabilities.
-{: .no_toc .strong-sub-title}
-
----
-
-## Create and start a basic chat  
-{: .d-inline-block .mt-4}
+### Create and start a basic chat  
 
 Follow the next steps in order to have a basic working chat integrated to your App.
 
-1. ### Create an Account
-    Chat basic details are provided over an account.
-    Create the relevant account object and fill the relevant details needed for the chat creation.
-    - [Create a `MessengerAccount`]({{'/docs/chat-configuration/chat-account/messenger-chat#messengeraccount' | relative_url}})
-    {: .no_toc }
-     
----
+1. Create or set the activity in which the chat will be displayed.
 
-2. ### Create [ChatController]({{'/docs/chat-configuration/extra/chatcontroller' | relative_url}})
-    With the ChatController one can create and control multiple chats.
-    The chat type is configured by the Account that is provided on chat creation.
+2. **Create chat account**
+    Create a [`MessengerAccount`](./messenger-chat#messengeraccount) and configure it with a predefined [`Messenger Deployment`](https://help.mypurecloud.com/articles/deploy-messenger/) details.
+     
+    ```kotlin
+    val messengerAccount = MessengerAccount([Deployment_Id], [Domain]).apply {
+            tokenStoreKey = [Token_Key]
+            logging = [true/false]
+        }
+    ```  
+     
+3. **Create ChatController instance**
+    
+    The [`ChatController`](./chatcontroller) is the interaction point with the SDK. You need it to create a chat.
 
     ```kotlin
     val chatController = ChatController.Builder(context)
-                                          .build(account, ...)
-    ...
-    // start a new chat, using same chatController:
-    chatController.startChat(account)
-
-    // restore active chat or starts new chat
-    chatController.restoreChat(fragment?, account?)
+                                          .build(messengerAccount, ChatLoadedListener)
     ```
----
 
-3. ### Add the chat fragment to your activity.
+4. **Display the chat on your activity**
 
-    Implement the ChatLoadedListener interface and pass it in the `ChatController.Builder` build method.   
-    Once the chat build succeeded and the fragment is ready to be displayed, `onComplete` will be called with the fragment on the result. 
+    ChatController build, if was successfull, creates a fragment on which the chat UI will be displayed. The created fragment should be added to your app's activity.
+
+    In order to get the chat fragment, implement the `ChatLoadedListener` interface and pass the implementation to `ChatController.Builder` `build` method.   
+    `ChatLoadedListener:onComplete` will be called with the chat creation outcome as `ChatLoadResponse` instance.    
+    `ChatLoadResponse` will contain the chat fragment if the chat was created properly. 
 
     ```kotlin
     ChatController.Builder(context).build(account, object : ChatLoadedListener {
             override fun onComplete(result: ChatLoadResponse) {
-                result.error?.run{
-                  // report Chat load failed
-                } ?: run{
-                  // add result.getFragment() to the applications activity.
+                result.error?.let {
+                  // report Chat loading failed
+                } ?: let {
+                  // add result.fragment to your activity.
+                  supportFragmentManager.beginTransaction().replace(R.id.chat_container, result.fragment, tag).commit()
                 }
             }
         })
     ```
+
+    > Verify that a chat fragment was not already been added to your activity. If one was added, make sure to remove it before adding the newly provided fragment.
+
+5. **Release chat resources on activity destroy** 
+- Activate [`ChatController.destruct()`](./chatcontroller#destructandrelease) when the `ChatController` instance is no longer needed. Destruct will release referenced open resources.
+
 ---
 
-##### **Notice** 
-{: .no_toc } 
-> Make sure to activate `ChatController.destruct()`, when the ChatController instance is no longer needed (e.g., Chats UI in app is being closed or the ChatController instance is being replaced). Destruct will verify resources release (including open sockets and communication channels).  
-
----
-
-### Code Sample
-{: .no_toc .text-delta}
-[bold360ai samples](https://github.com/bold360ai/bold360-mobile-samples-android)
--
+### [Code Sample](https://github.com/genesys/)
