@@ -106,6 +106,7 @@ dependencies {
 <summary> Version 5.0.1 </summary>
 
 # Version 5.0.1
+#### `pre-release`
 Release date: 13 Dec 2021
 
 ### What's new 
