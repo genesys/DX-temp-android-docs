@@ -3,9 +3,9 @@
 
 
 <details open markdown="block">
-<summary> Version 5.0.3 </summary>
+<summary> Version 5.1.0 </summary>
 
-# Version 5.0.3
+# Version 5.1.0
 #### `pre-release`   
 Release date: 
 ___
