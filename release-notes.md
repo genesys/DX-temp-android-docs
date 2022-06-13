@@ -11,21 +11,21 @@ Release date:
 ___
 
 ### What's new 
-- Basic history support. History fetched when returning to previos started chats and on network connection recovery.
-- Automatic connection to current open messenger chat, once network connection recovery identified on the device.
+- Basic history support. History is fetched when returning to previously started chats and on network connection recovery.
+- Once the network connection recovery identified on the device, connection is automatically established to the current open messenger chat.
 - Addition of configurable `System message` UI component.
-- Chat state tracking improvement.
-- Integrating with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.2.1`
-- `ChatAvailability.checkAvailability` API available for messenger chat. Allows hosting Apps to verify wether messenger chat activation is feasible.
+- Improved chat state tracking.
+- Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.2.1`
+- `ChatAvailability.checkAvailability` API is available for messenger chat, which allows hosting Apps to verify whether the messenger chat activation is feasible.
  
 ### Bug fixes
 - Incoming messages buffering until history fetched messages are loaded.
-- Ignoring event typed messages to prevent empty messages.
+- Ignoring event type messages to prevent empty messages.
 
 ### Breaking changes
 - ChatHandler manages the chat configurations with `ConfigurationRepository` instead of the dismissed `ConfigurationProvider`.
-- Dening access to `ConfigurationRepository` and `ChatEngine` from the `ChatController` instance.
-- Separate chat configuration maintained for each active chat session.
+- Denying access to `ConfigurationRepository` and `ChatEngine` from the `ChatController` instance.
+- Separate chat configuration is maintained for each of the active chat sessions.
 
 ---
 
@@ -66,7 +66,7 @@ Failure to load chat configurations, fails the chat creation.
 - Messenger chat engine support.
 - Configurable UI components for `Fast scroll` button and `Datestamp` headers, were added to `ChatUIProvider`.
 - UI configurations for `Timestamp` and `Readmore`, were added to `ChatUIProvider`.
-- Integrating with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.14`.
+- Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.14`.
 
 ### Bug fixes
 - Fast scroll button visibility after voice recording.
@@ -112,7 +112,7 @@ Release date: 13 Dec 2021
 ### What's new 
 - Chat engine support for the available chat types. The chat engine enables creation and control of chats not related to the displayed chat UI.  
 - Javadoc and KDoc, technical documentation addition.  
-- Integrating with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.12`.
+- Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.12`.
 
 ### Breaking Changes
 - namespacing and packages renaming to `com.genesys.cloud` prefix. 
