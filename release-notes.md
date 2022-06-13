@@ -58,11 +58,11 @@ dependencies {
 Release date: 20 Feb 2022
 
 ### What's new 
-- Chat configurations maintenance improvements. Seperating logic settings from UI related configurations.
-- Loading messenger chat configurations and applying basic UI configurations on displayed messages.
-- Enable chat configurations alternation by the hosting App before chat starts, with `ConfigurationsProvider` implementation. 
-- Chat start can be prevented using `ChatSettings::enabled` property.
-Failure to load chat configurations, fails the chat creation.
+- Chat configurations maintenance improvements. Separated logic settings from UI related configurations.
+- Loaded messenger chat configurations and applied basic UI configurations on displayed messages.
+- Enabled chat configurations alternation by the hosting App before chat starts, with `ConfigurationsProvider` implementation. 
+- Chat start can be prevented with the use of `ChatSettings::enabled` property.
+Failure to load chat configurations makes the chat creation fail.
 - Messenger chat engine support.
 - Configurable UI components for `Fast scroll` button and `Datestamp` headers, were added to `ChatUIProvider`.
 - UI configurations for `Timestamp` and `Readmore`, were added to `ChatUIProvider`.
@@ -75,9 +75,9 @@ Failure to load chat configurations, fails the chat creation.
 
 ### Breaking changes
 - `Timestamp` UI configuration, `textStyleConfig` and `readMoreThreshold`, were relocated to `ChatUIProvider`. 
-- `ChatScroller` renamed to `ChatFastScrollConfig` and is now available on `ChatUIProvider::FastScrollUIProvider`.
-- `ChatUIProvider` instance can't be set over the `ChatController` instance. `ConfigurationsProvider` implementation should be used instead.
-- `ConversationSettings` were dismissed, use `ConfigurationsProvider` instead.
+- `ChatScroller` was renamed to `ChatFastScrollConfig` and is now available on `ChatUIProvider::FastScrollUIProvider`.
+- `ChatUIProvider` instance can't be set over the `ChatController` instance. Use `ConfigurationsProvider` implementation should be used instead.
+- `ConversationSettings` were dismissed. Use `ConfigurationsProvider` instead.
 
 --- 
 
@@ -110,19 +110,19 @@ dependencies {
 Release date: 13 Dec 2021
 
 ### What's new 
-- Chat engine support for the available chat types. The chat engine enables creation and control of chats not related to the displayed chat UI.  
-- Javadoc and KDoc, technical documentation addition.  
+- Chat engine support. Provides the functionality to creat and control chats.  
+- Technical documentation generation with Javadoc and KDoc comments.  
 - Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.12`.
 
 ### Breaking Changes
-- namespacing and packages renaming to `com.genesys.cloud` prefix. 
-- `engine` module removal. Content moved to `chatintegration` module.
+- Modules namespacing and packages were renamed with `com.genesys.cloud` prefix. 
+- Module `engine` was removed. Classes can be found under `chatintegration` module.
 
 ---
 
 ### Dependencies 
 
-> 👉  Artifacts are now located under JFrog artifactory
+> 👉  Artifacts are available on JFrog artifactory
 
 ```gradle
 repositories {
