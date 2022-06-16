@@ -86,7 +86,7 @@ Follow the next steps to have a basic working chat integrated to your App.
      
 3. **Create ChatController instance**
     
-   The [`ChatController`](./chatcontroller.md) is the interaction point with the SDK. You need it to create a chat.
+   The [`ChatController`](./chatcontroller.md) provides APIs to create and manage chats.
 
    ```kotlin
    val chatController = ChatController.Builder(context)
