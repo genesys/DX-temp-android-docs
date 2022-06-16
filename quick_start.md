@@ -25,7 +25,7 @@ Use this Quick start guide to set up a working chat hosted by your App.
           ...
           maven { url "https://genesysdx.jfrog.io/artifactory/genesysdx-android.dev/" }
      }
-        
+     ```   
       
    - Add the following imports to your App's build.gradle file.
 
