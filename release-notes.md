@@ -1,5 +1,5 @@
 
-# Android Chat SDK Release Notes
+# Android Messenger SDK Release Notes
 
 
 <details open markdown="block">
