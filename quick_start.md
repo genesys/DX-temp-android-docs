@@ -12,7 +12,7 @@ Use this Quick start guide to set up a working chat hosted by your App.
 * Android 5.0 (API level 21) or higher 
 
 
-### Integrate with messenger chat on your App.
+### Set up Messenger SDK on your App.
 
 1. **Configure gradle version**  
    Open `File->Project Structure` on android studio top menu to configure the gradle version on your project.
