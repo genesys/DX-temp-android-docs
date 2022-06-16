@@ -19,7 +19,7 @@ Use this Quick start guide to set up a working chat hosted by your App.
    
 2. **Import SDK's artifacts**
     
-   - Add the following repo path to your project's/module's repositories configuration on the build.gradle file.
+   - Add the SDK's repository path to your project's/module's repositories configuration on the build.gradle file.
      ```gradle
      repositories{
           ...
