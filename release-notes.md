@@ -16,7 +16,7 @@ ___
 - Addition of configurable `System message` UI component.
 - Improved chat state tracking.
 - Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.2.1`
-- `ChatAvailability.checkAvailability` API is available for messenger chat, which allows hosting Apps to verify whether the messenger chat activation is feasible.
+- `ChatAvailability.checkAvailability` API is available for messenger, which allows hosting Apps to verify whether the messenger conversation activation is feasible.
  
 ### Bug fixes
 - Incoming messages buffering until history fetched messages are loaded.
@@ -25,7 +25,7 @@ ___
 ### Breaking changes
 - ChatHandler manages the chat configurations with `ConfigurationRepository` instead of the dismissed `ConfigurationProvider`.
 - Denying access to `ConfigurationRepository` and `ChatEngine` from the `ChatController` instance.
-- Separate chat configuration is maintained for each of the active chat sessions.
+- Separate messenger configuration is maintained for each of the active chat sessions.
 
 ---
 
@@ -58,8 +58,8 @@ dependencies {
 Release date: 20 Feb 2022
 
 ### What's new 
-- Chat configurations maintenance improvements. Separated logic settings from UI related configurations.
-- Loaded messenger chat configurations and applied basic UI configurations on displayed messages.
+- Messenger configurations maintenance improvements. Separated logic settings from UI related configurations.
+- Loaded messenger configurations and applied basic UI configurations on displayed messages.
 - Enabled chat configurations alternation by the hosting App before chat starts, with `ConfigurationsProvider` implementation. 
 - Chat start can be prevented with the use of `ChatSettings::enabled` property.
 Failure to load chat configurations makes the chat creation fail.
@@ -110,7 +110,7 @@ dependencies {
 Release date: 13 Dec 2021
 
 ### What's new 
-- Chat engine support. Provides the functionality to creat and control chats.  
+- Chat engine support. Provides the functionality to create and control messengers.  
 - Technical documentation generation with Javadoc and KDoc comments.  
 - Integration with Transport SDK version `cloud.genesys:messenger-transport-mobile-sdk:1.1.12`.
 
@@ -151,8 +151,8 @@ dependencies {
 Release date: 14 Nov 2021
 
 ### What's new 
-- Basic messenger chat support. 
-- Basic error handling for messenger chat.
+- Basic messenger support. 
+- Basic error handling for messenger.
 - Integration with Transport SDK version `com.genesys.sdk:transport:1.0.0.rc4`.
 
 ---
