@@ -1,7 +1,7 @@
 
-## Quick start
+## Quick start quide
 
-Use this Quick start guide to set up a working chat hosted by your App.   
+Use this Quick start guide to set up a working messaging client hosted by your App.   
 
 ### System Requirements  
 
@@ -54,13 +54,13 @@ Use this Quick start guide to set up a working chat hosted by your App.
     
 ---
 
-### Create and start a basic chat  
+### Create and start a basic messaging conversation  
 
-Follow the next steps to have a basic working chat integrated to your App.
+Follow the next steps to have a basic working messaging integrated to your App.
 
-1. Create or set the activity in which the chat will be displayed.
+1. Create or set the activity in which the conversation will be displayed.
 
-2. **Create chat account**
+2. **Create Messenger account**
     Create a [`MessengerAccount`](./messenger-chat#messengeraccount) and configure it with a predefined [`Messenger Deployment`](https://help.mypurecloud.com/articles/deploy-messenger/) details.
      
     ```kotlin
@@ -79,13 +79,13 @@ Follow the next steps to have a basic working chat integrated to your App.
                                           .build(messengerAccount, ChatLoadedListener)
     ```
 
-4. **Display the chat on your activity**
+4. **Display the Messenger on your activity**
 
-    If the ChatController build was successful, it creates a fragment on which the chat UI will be displayed. The created fragment should be added to your app's activity.
+    If the ChatController build was successful, it creates a fragment on which the messenger UI will be displayed. The created fragment should be added to your app's activity.
 
     To get the chat fragment, implement the `ChatLoadedListener` interface and pass the implementation to `ChatController.Builder` `build` method.   
-    `ChatLoadedListener:onComplete` will be called with the chat creation outcome as a `ChatLoadResponse` instance.    
-    `ChatLoadResponse` will contain the chat fragment if the chat was created properly.   
+    `ChatLoadedListener:onComplete` will be called with the messenger creation outcome as a `ChatLoadResponse` instance.    
+    `ChatLoadResponse` will contain the messenger fragment if the messenger was created properly.   
     
     ```kotlin
     ChatController.Builder(context).build(account, object : ChatLoadedListener {
